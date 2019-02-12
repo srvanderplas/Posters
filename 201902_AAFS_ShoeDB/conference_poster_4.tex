@@ -21,6 +21,7 @@
 %-------------------------------------------------------------------------
 
 \documentclass[landscape, a0paper, fontscale=0.275, margin = 30mm]{baposter} % Adjust the font scale/size here
+\immediate\write18{./convert_tiff_pdf.sh}
 
 \graphicspath{{figures/}{DLData/}} % Directory in which figures are stored
 \usepackage{palatino} % Use the Palatino font
@@ -36,9 +37,6 @@
 % \usepackage{tikz} % Required for flow chart
 % \usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
 \renewcommand{\figurename}{Fig.} % Shorten figure caption label
-\makeatletter % key for setting individual imageresolution
-\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
-\makeatother
 
 
 \usepackage{multicol} % Required for multiple columns
