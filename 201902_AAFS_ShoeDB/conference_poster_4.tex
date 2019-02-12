@@ -36,6 +36,9 @@
 % \usepackage{tikz} % Required for flow chart
 % \usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
 \renewcommand{\figurename}{Fig.} % Shorten figure caption label
+\makeatletter % key for setting individual imageresolution
+\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
+\makeatother
 
 
 \usepackage{multicol} % Required for multiple columns
