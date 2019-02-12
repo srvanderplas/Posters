@@ -1,0 +1,265 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% baposter Landscape Poster
+% LaTeX Template
+% Version 1.0 (11/06/13)
+%
+% baposter Class Created by:
+% Brian Amberg (baposter@brian-amberg.de)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \title{CSAFE poster template}
+
+%-------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------
+
+\documentclass[landscape, a0paper, fontscale=0.275, margin = 30mm, showframe]{baposter} % Adjust the font scale/size here
+\immediate\write18{./convert_tiff_pdf.sh}
+
+\usepackage{natbib} % References
+
+\usepackage{setspace}
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{tabularx} % Stretchy tables
+\usepackage{tabu} % Stretchy tables
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+
+\renewcommand{\figurename}{Fig.} % Shorten figure caption label
+\graphicspath{{figures/}{DLData/}} % Directory in which figures are stored
+
+% \usepackage{tikz} % Required for flow chart
+% \usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
+
+\usepackage{multicol} % Required for multiple columns
+\setlength{\columnsep}{1.5em} % Slightly increase the space between columns
+\setlength{\columnseprule}{0mm} % No horizontal rule between columns
+
+\usepackage{enumitem} % Itemize separation
+\setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+\setitemize{nolistsep,leftmargin=*}
+\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+\usepackage{amsmath} % For typesetting math
+\usepackage{amssymb} % Adds new symbols to be used in math mode
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Sanchez}[
+  Path=fonts/,
+  UprightFont=*-Regular,
+  ItalicFont=*-Italic
+]
+\setsansfont[Ligatures=TeX]{Montserrat}[
+  Path=fonts/,
+  UprightFont=*-Light,
+  BoldFont=*-Bold,
+  ItalicFont=*-LightItalic,
+  BoldItalicFont=*-BoldItalic
+]
+\setmonofont[Ligatures=TeX]{Inconsolata}[Path=fonts/, BoldFont=*-Bold, UprightFont=*-Regular]
+% Use montserrat as default font
+\renewcommand{\familydefault}{\sfdefault}
+% Create command \sanchez to use for headings with Sanchez
+\newfontfamily\sanchez[Italic]{Sanchez}
+
+\usepackage{hyperref}
+\urlstyle{sf}
+
+\definecolor{white}{rgb}{1,1,1} % Defines the color used for content box headers
+\definecolor{navyblue}{rgb}{0,.227,0.439} % Defines the color used for content box headers
+\definecolor{limegreen}{rgb}{.467, .737, .122}
+
+% This removes any blank page added in the beginning of a document
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+\pretolerance=10000
+
+<<setup, echo = F, include = F, message = F, warning = F>>=
+knitr::opts_chunk$set(echo = F, dpi = 300)
+library(tidyverse)
+library(here)
+visit_info <- read_csv(here("201902_AAFS_ShoeDB/DLData/Visit-info.csv"))
+
+  readLines(here("201902_AAFS_ShoeDB/DLData/Visit-info.csv")) %>%
+  str_replace_all('"""', '"') %>%
+  str_replace_all('""', '"') %>%
+  str_replace_all("tiff,", "tiff\",") %>%
+  read_csv() %>%
+  mutate(scandate = str_extract(`File Name`, "\\d{8}") %>% lubridate::ymd()) %>%
+  group_by(`Shoe Number`) %>%
+  arrange(scandate)
+@
+
+
+\begin{document}
+\begin{poster}
+{
+grid=true,
+columns=3,
+background=none,
+colspacing=1em, % Column spacing
+textborder=rectangle, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright, roundedleft, or faded
+boxshade=none,
+bgColorOne=white,
+bgColorTwo=white,
+borderColor=navyblue,
+headerheight=0.14\textheight, % Height of the header
+headerborder=closed, % Adds a border around the header of content boxes
+headershape=rectangle, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+headershade=plain,
+headerColorOne=navyblue,
+headerColorTwo=navyblue,
+headerFontColor=white,
+headerfont=\Large\sanchez, % Large, bold and sans serif font in the headers of content boxes
+linewidth=2pt % Width of the border lines around content boxes
+}
+%-------------------------------------------------------------------------------
+%	TITLE SECTION
+%-------------------------------------------------------------------------------
+%
+{\includegraphics[height=7em]{logo.png}} % First university/lab logo on the left
+{\huge\bf A Longitudinal Database of Athletic Shoe Outsole Wear\vspace{0.3em}} % Poster title
+{{\Large Susan VanderPlas, Guillermo Basulto-Elias, James E. Kruse, \\Stacy Renfro, Alicia Carriquiry, Iowa State University}\vspace*{-0.6em}} % Author names and institution
+{\includegraphics[height=5em]{logo-NIST.jpg}} % Second university/lab logo on the right
+
+%---------------------------------------------------------------------------------
+%	OBJECTIVES
+%---------------------------------------------------------------------------------
+
+\headerbox{Study Design}{name=objectives,column=0,row=0,boxpadding=2mm}{
+{\bf Shoes}
+\begin{itemize}
+\item 160 pairs
+\item Models: Adidas Seeley, Nike Winflo
+\item Sizes: 2 sizes each in Men and Women's shoes
+\item Worn for a minimum of 10,000 steps per week
+\item Returned every 5 weeks for assessment
+\end{itemize}
+\vspace{.5em}
+{\bf Methods}
+\begin{itemize}
+\item Pressure Scanner {\small(initial visit only, barefoot and with shoes)}
+\item 2D Digital Scanner
+\item 3D Laser Scanner
+\item Digital Camera
+\item Film and Powder Prints
+\item Paper and Powder Prints
+\end{itemize}
+{\footnotesize Data Collection Procedures documented at:\\\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_Study}}
+}
+
+%----------------------------------------------------------------------------------------
+%	DB Features
+%----------------------------------------------------------------------------------------
+
+\headerbox{Database Features}{name=sets,column=0,below=objectives,above=bottom,boxpadding=2mm}{
+\centering
+\includegraphics[width=\linewidth]{QueryFields.png}\vspace{-.5em}
+\captionof{figure}[Query Fields]{6 searchable fields, including design, individual shoe ID, foot, capture method, and number of steps.}
+\vspace{1.5em}
+\includegraphics[width=\linewidth]{DownloadSelect.png}\vspace{-.5em}
+\captionof{figure}{Download only the images you need.}
+\vspace{1.5em}
+\includegraphics[width=.5\linewidth]{SaveAndLoad.png}\vspace{-.5em}
+\captionof{figure}{Export queries for later.}
+Metadata about the images, shoes, and participants is included in the downloaded zip file.
+}
+
+%----------------------------------------------------------------------------------------
+%	URL
+%----------------------------------------------------------------------------------------
+
+\headerbox{\centering Access the Database}{name=url,column=1,row=0,span=2,boxpadding=2mm}{
+\begin{minipage}\begin{center}\bf\large\url{https://data.csafe.iastate.edu/LongitudinalShoeStudy/}\end{center}\end{minipage}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	Longitudinal Shoe Wear - Nike
+%----------------------------------------------------------------------------------------
+
+\headerbox{Nike Winflo}{name=lswn,column=1,below=url,boxpadding=2mm}{
+\hspace{-.5em}\begin{tabu} to .99\linewidth {X[c]X[c]X[c]X[c]}
+\includegraphics[height=5cm,interpolate=T]{043758L_20171113_2_1_1_csafe_bpbryson.pdf} &
+\includegraphics[height=5cm,interpolate=T]{043758L_20180214_2_1_1_csafe_jekruse.pdf} &
+\includegraphics[height=5cm,interpolate=T]{043758L_20180319_2_1_1_csafe_bpbryson.pdf} &
+\includegraphics[height=5cm,interpolate=T]{043758L_20180418_2_1_1_csafe_jekruse.pdf}\\
+0 steps & X1 steps & X2 steps & X3 steps
+\end{tabu}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	Land to Land
+%----------------------------------------------------------------------------------------
+
+\headerbox{Build A Query}{name=baq,column=1,below=lswn,boxpadding=2mm}{
+
+}
+
+
+
+%----------------------------------------------------------------------------------------
+%	Other
+%----------------------------------------------------------------------------------------
+
+\headerbox{}{name=other,column=1,span=1,below=baq,above=bottom,boxpadding=2mm}{
+
+}
+
+%----------------------------------------------------------------------------------------
+%	Longitudinal Shoe Wear - Adidas
+%----------------------------------------------------------------------------------------
+
+\headerbox{Adidas Seeley}{name=lswa,column=2,span=1,below=url,boxpadding=2mm}{
+\hspace{-.5em}\begin{tabu} to .99\linewidth {X[c]X[c]X[c]X[c]}
+\includegraphics[height=5cm]{007961L_20171031_2_1_1_csafe_bpbryson.pdf} &
+\includegraphics[height=5cm]{007961L_20180124_2_1_1_csafe_bryson.pdf} &
+\includegraphics[height=5cm]{007961L_20180228_2_1_1_csafe_jekruse.pdf} &
+\includegraphics[height=5cm]{007961L_20180411_2_1_1_csafe_jekruse.pdf}\\
+0 steps & X1 steps & X2 steps & X3 steps
+\end{tabu}
+}
+
+%----------------------------------------------------------------------------------------
+%	Applications
+%----------------------------------------------------------------------------------------
+
+\headerbox{Future Work}{name=fw,column=2,span=1,below=lswa,boxpadding=2mm}{
+
+}
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+
+\headerbox{References}{name=refs,column=2,row=1,span=1,below=fw,above=bottom,boxpadding=2mm}{
+\renewcommand{\section}[2]{} % Get rid of the default "References" section title
+\renewcommand{\bibfont}{\tiny}\setlength{\bibsep}{0pt plus 0.2ex}
+\bibliographystyle{unsrt}
+\bibliography{Refs}
+}
+
+
+
+
+%----------------------------------------------------------------------------------------
+% \headerbox{foot}{name=foot,column=0, span=4, above=bottom}{
+% abcdefghijklmnop}
+%\cfoot{abcdddddddddddd}
+
+
+\end{poster}
+{\vspace*{0.05em}\hspace{-.5cm}\tiny{This work was partially funded by CSAFE through Cooperative Agreement \# 70NANB15H176 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, University of California Irvine, and University of Virginia}
+\end{document}
