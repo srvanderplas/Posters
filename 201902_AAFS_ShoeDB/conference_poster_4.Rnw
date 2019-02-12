@@ -20,7 +20,13 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %-------------------------------------------------------------------------
 
-\documentclass[landscape, a0paper, fontscale=0.275, margin = 30mm, showframe]{baposter} % Adjust the font scale/size here
+\documentclass[landscape, a0paper, fontscale=0.275, margin = 30mm]{baposter} % Adjust the font scale/size here
+% Other options:
+%   - showframe (shows frame around whole poster, useful for debugging
+%   - movebody=Xpt (moves body - center on page)
+%   - a4shrink (shrink to A4 for handouts)
+
+)
 \immediate\write18{./convert_tiff_pdf.sh}
 
 \usepackage{natbib} % References
@@ -104,7 +110,7 @@ visit_info <- read_csv(here("201902_AAFS_ShoeDB/DLData/Visit-info.csv"))
 \begin{document}
 \begin{poster}
 {
-grid=true,
+% grid=true, % show grid to help align stuff
 columns=3,
 background=none,
 colspacing=1em, % Column spacing
