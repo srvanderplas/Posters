@@ -59,6 +59,7 @@
 \usepackage{enumitem} % Itemize separation
 \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
 \setitemize{nolistsep,leftmargin=*}
+\setenumerate{nolistsep,leftmargin=*}
 \newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
 \setlength{\itemsep}{1pt}
 \setlength{\parskip}{0pt}
@@ -103,6 +104,14 @@
 \definecolor{csafegreen}{rgb}{.467, .737, .122}
 \definecolor{csafered}{rgb}{.811, .039, .173}
 \definecolor{csafegrey}{rgb}{.541, .541, .553}
+\definecolor{csafegray}{rgb}{.541, .541, .553}
+
+
+\newcommand{\headercolorbox}[4]{%
+  \begin{posterbox}[#3,borderColor=#2,headerColorOne=#2,headerColorTwo=#2]{#1}
+    #4
+  \end{posterbox}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -141,7 +150,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 %	OBJECTIVES
 %---------------------------------------------------------------------------------
 
-\headerbox{Study Design}{name=objectives,column=0,row=0,boxpadding=2mm}{
+\headercolorbox{Study Design}{csafelightblue}{name=objectives,column=0,row=0,boxpadding=2mm}{
 {\bf Shoes}
 \begin{itemize}
 \item 160 pairs
@@ -170,7 +179,7 @@ Documentation at \\{\small\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_St
 %	DB Features
 %----------------------------------------------------------------------------------------
 
-\headerbox{Database Features}{name=sets,column=0,below=objectives,above=bottom,boxpadding=2mm}{
+\headercolorbox{Database Features}{csafegreen}{name=sets,column=0,below=objectives,above=bottom,boxpadding=2mm}{
 Metadata about the images, shoes, and participants is included in the downloaded zip file.\\
 \vspace{.5em}
 \begin{minipage}{\textwidth}\centering
@@ -191,7 +200,7 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %	URL
 %----------------------------------------------------------------------------------------
 
-\headerbox{Access the Database}{name=url,column=1,row=0,span=2,boxpadding=2mm,headerColorOne=csafered,headerColorTwo=csafered,borderColor=csafered}{
+\headercolorbox{Access the Database}{csafered}{name=url,column=1,row=0,span=2,boxpadding=2mm}{
 \begin{minipage}[c]{.99\textwidth}
 \centering
 \bf\large\url{https://data.csafe.iastate.edu/LongitudinalShoeStudy/}
@@ -213,22 +222,39 @@ Metadata about the images, shoes, and participants is included in the downloaded
 \end{tabu}
 }
 
-
-%----------------------------------------------------------------------------------------
-%	Land to Land
-%----------------------------------------------------------------------------------------
-
-\headerbox{Build A Query}{name=baq,column=1,below=lswn,boxpadding=2mm}{
-
-}
-
-
-
 %----------------------------------------------------------------------------------------
 %	Other
 %----------------------------------------------------------------------------------------
 
-\headerbox{other}{name=other,column=1,span=1,below=baq,above=bottom,boxpadding=2mm}{
+\headercolorbox{Goals}{csafelightblue}{name=goals,column=1,span=1,below=lswn,boxpadding=2mm}{
+The goal of this database is to enable comparisons of wear and individual characteristics, as measured by several different collection methods
+\begin{itemize}
+\item Compare data acquisition methods
+\item Examine individual wear patterns
+\item Explore evolution of acquired defects over time
+\item 
+\end{itemize}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	Build A Query
+%----------------------------------------------------------------------------------------
+
+\headercolorbox{Build A Query}{csafegreen}{name=baq,column=1,below=goals,above=bottom,boxpadding=2mm}{
+\begin{minipage}{.5\textwidth}\begin{enumerate}\compresslist\small
+\item Add new conditions using the $+$ sign
+\item Select the join operation to use (AND/OR)
+\item Select the filter variable
+\item Select the desired value
+\item Submit (Initiate Query)
+\item Select images for download (right pane)
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{.475\textwidth}
+\includegraphics[width=\textwidth]{QueryBuilder.png}
+\end{minipage}
+
 
 }
 
