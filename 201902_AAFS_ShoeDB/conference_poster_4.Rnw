@@ -42,7 +42,8 @@
 \usepackage{tabularx} % Stretchy tables
 \usepackage{tabu} % Stretchy tables
 \usepackage[hypcap=false,font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
-\usepackage{hyperref}
+\usepackage[export]{adjustbox} % Frames around images
+\usepackage{url}
 \urlstyle{sf}
 
 \renewcommand{\figurename}{Fig.} % Shorten figure caption label
@@ -67,6 +68,11 @@
 \usepackage{amsmath} % For typesetting math
 \usepackage{amssymb} % Adds new symbols to be used in math mode
 \usepackage{fontspec}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CSAFE Styling (from Identity Guide)                                      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setmainfont[Ligatures=TeX]{Sanchez}[
   Path=fonts/, Extension = .ttf,
   UprightFont=*-Regular,
@@ -91,29 +97,16 @@
 
 
 \definecolor{white}{rgb}{1,1,1} % Defines the color used for content box headers
-\definecolor{navyblue}{rgb}{0,.227,0.439} % Defines the color used for content box headers
-\definecolor{limegreen}{rgb}{.467, .737, .122}
+% CSAFE Colors
+\definecolor{csafelightblue}{rgb}{.251, .706, .898}
+\definecolor{csafedarkblue}{rgb}{0,.227,0.439} % Used for content box headers
+\definecolor{csafegreen}{rgb}{.467, .737, .122}
+\definecolor{csafered}{rgb}{.811, .039, .173}
+\definecolor{csafegrey}{rgb}{.541, .541, .553}
 
-% 
-% <<setup, echo = F, include = F, message = F, warning = F>>=
-% knitr::opts_chunk$set(echo = F, dpi = 300)
-% library(tidyverse)
-% library(here)
-% visit_info <- read_csv(here("201902_AAFS_ShoeDB/DLData/Visit-info.csv"))
-% 
-%   readLines(here("201902_AAFS_ShoeDB/DLData/Visit-info.csv")) %>%
-%   str_replace_all('"""', '"') %>%
-%   str_replace_all('""', '"') %>%
-%   str_replace_all("tiff,", "tiff\",") %>%
-%   read_csv() %>%
-%   mutate(scandate = str_extract(`File Name`, "\\d{8}") %>% lubridate::ymd()) %>%
-%   group_by(`Shoe Number`) %>%
-%   arrange(scandate)
-% @
-% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
 \begin{poster}
 {
 % grid=true, % show grid to help align stuff
@@ -124,16 +117,16 @@ textborder=rectangle, % Format of the border around content boxes, can be: none,
 boxshade=none,
 bgColorOne=white,
 bgColorTwo=white,
-borderColor=navyblue,
+borderColor=csafedarkblue,
 headerheight=0.14\textheight, % Height of the header
 headerborder=closed, % Adds a border around the header of content boxes
 headershape=rectangle, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
 headershade=plain,
-headerColorOne=navyblue,
-headerColorTwo=navyblue,
+headerColorOne=csafedarkblue,
+headerColorTwo=csafedarkblue,
 headerFontColor=white,
 headerfont=\Large\bf, % Large, bold and sans serif font in the headers of content boxes
-linewidth=2pt % Width of the border lines around content boxes
+linewidth=1.5pt % Width of the border lines around content boxes
 }
 %-------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -168,7 +161,9 @@ linewidth=2pt % Width of the border lines around content boxes
 \item Paper and Powder Prints
 \item Simulated Crime Scene Style Prints
 \end{itemize}
-{\footnotesize Data Collection Procedures documented at:\\\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_Study}}
+\vspace{.5em}
+{\bf Data Collection Procedures:}
+Documentation at \\{\small\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_Study}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -196,7 +191,7 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %	URL
 %----------------------------------------------------------------------------------------
 
-\headerbox{Access the Database}{name=url,column=1,row=0,span=2,boxpadding=2mm}{
+\headerbox{Access the Database}{name=url,column=1,row=0,span=2,boxpadding=2mm,headerColorOne=csafered,headerColorTwo=csafered,borderColor=csafered}{
 \begin{minipage}[c]{.99\textwidth}
 \centering
 \bf\large\url{https://data.csafe.iastate.edu/LongitudinalShoeStudy/}
@@ -208,13 +203,13 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %	Longitudinal Shoe Wear - Nike
 %----------------------------------------------------------------------------------------
 
-\headerbox{Nike Winflo}{name=lswn,column=1,below=url,boxpadding=2mm}{
+\headerbox{Nike Winflo - Film Prints}{name=lswn,column=1,below=url,boxpadding=2mm}{
 \hspace{-.5em}\begin{tabu} to \textwidth {X[c]X[c]X[c]X[c]}
-\includegraphics[height=4.8cm]{043758L_20171113_2_1_1_csafe_bpbryson.pdf} &
-\includegraphics[height=4.8cm]{043758L_20180214_2_1_1_csafe_jekruse.pdf} &
-\includegraphics[height=4.8cm]{043758L_20180319_2_1_1_csafe_bpbryson.pdf} &
-\includegraphics[height=4.8cm]{043758L_20180418_2_1_1_csafe_jekruse.pdf}\\
-0 steps & X1 steps & X2 steps & X3 steps
+\includegraphics[height=4.8cm,trim=20 0 20 0,clip=true,cframe=csafered]{043758L_20180109_5_1_1_csafe_kruse-basulto-elias-kruse.pdf} &
+\includegraphics[height=4.8cm,trim=20 0 20 0,clip=true,cframe=csafered]{043758L_20180131_5_1_1_csafe_boekhoff_kruse_zwart.pdf} &
+\includegraphics[height=4.8cm,trim=20 0 20 0,clip=true,cframe=csafered]{043758L_20180307_5_1_1_basulto_silerio_jekruse} &
+\includegraphics[height=4.8cm,trim=20 0 20 0,clip=true,cframe=csafered]{043758L_20180411_5_1_1_bryson_kruse_kruse.pdf}\\
+0 steps & 80035 steps & 146844 steps & 255499 steps
 \end{tabu}
 }
 
@@ -241,13 +236,13 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %	Longitudinal Shoe Wear - Adidas
 %----------------------------------------------------------------------------------------
 
-\headerbox{Adidas Seeley}{name=lswa,column=2,span=1,below=url,boxpadding=2mm}{
+\headerbox{Adidas Seeley - 2D Digital Scan}{name=lswa,column=2,span=1,below=url,boxpadding=2mm}{
 \hspace{-.5em}\begin{tabu} to .99\textwidth {X[c]X[c]X[c]X[c]}
 \includegraphics[height=4.8cm]{007961L_20171031_2_1_1_csafe_bpbryson.pdf} &
 \includegraphics[height=4.8cm]{007961L_20180124_2_1_1_csafe_bryson.pdf} &
 \includegraphics[height=4.8cm]{007961L_20180228_2_1_1_csafe_jekruse.pdf} &
 \includegraphics[height=4.8cm]{007961L_20180411_2_1_1_csafe_jekruse.pdf}\\
-0 steps & X1 steps & X2 steps & X3 steps
+0 steps & 98753 steps & 129205 steps & 183958 steps
 \end{tabu}
 }
 
