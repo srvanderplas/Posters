@@ -179,17 +179,17 @@ linewidth=2pt % Width of the border lines around content boxes
 Metadata about the images, shoes, and participants is included in the downloaded zip file.\\
 \vspace{.5em}
 \begin{minipage}{\textwidth}\centering
-\includegraphics[width=.9\linewidth]{QueryFields.png}\vspace{-.5em}
+\includegraphics[width=.9\textwidth]{QueryFields.png}\vspace{-.5em}
 \captionof{figure}[Query Fields]{6 searchable fields, including design, individual shoe ID, foot, capture method, and number of steps.}
-\end{minipage}\vspace{1.5em}
+\end{minipage}\vspace{.5em}
 \begin{minipage}{\textwidth}\centering
-\includegraphics[width=.9\linewidth]{DownloadSelect.png}\vspace{-.5em}
+\includegraphics[width=.9\textwidth]{DownloadSelect.png}\vspace{-.5em}
 \captionof{figure}{Download only the images you need.}
-\end{minipage}\vspace{1.5em}
+\end{minipage}\vspace{.5em}
 \begin{minipage}{\textwidth}\centering
-\includegraphics[width=.5\linewidth]{SaveAndLoad.png}\vspace{-.5em}
+\includegraphics[width=.5\textwidth]{SaveAndLoad.png}\vspace{-.5em}
 \captionof{figure}{Export queries for later.}
-\end{minipage}\vspace{1.5em}
+\end{minipage}
 }
 
 %----------------------------------------------------------------------------------------
@@ -209,11 +209,11 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %----------------------------------------------------------------------------------------
 
 \headerbox{Nike Winflo}{name=lswn,column=1,below=url,boxpadding=2mm}{
-\hspace{-.5em}\begin{tabu} to .99\linewidth {X[c]X[c]X[c]X[c]}
-\includegraphics[height=4.8cm,interpolate=T]{043758L_20171113_2_1_1_csafe_bpbryson.pdf} &
-\includegraphics[height=4.8cm,interpolate=T]{043758L_20180214_2_1_1_csafe_jekruse.pdf} &
-\includegraphics[height=4.8cm,interpolate=T]{043758L_20180319_2_1_1_csafe_bpbryson.pdf} &
-\includegraphics[height=4.8cm,interpolate=T]{043758L_20180418_2_1_1_csafe_jekruse.pdf}\\
+\hspace{-.5em}\begin{tabu} to \textwidth {X[c]X[c]X[c]X[c]}
+\includegraphics[height=4.8cm]{043758L_20171113_2_1_1_csafe_bpbryson.pdf} &
+\includegraphics[height=4.8cm]{043758L_20180214_2_1_1_csafe_jekruse.pdf} &
+\includegraphics[height=4.8cm]{043758L_20180319_2_1_1_csafe_bpbryson.pdf} &
+\includegraphics[height=4.8cm]{043758L_20180418_2_1_1_csafe_jekruse.pdf}\\
 0 steps & X1 steps & X2 steps & X3 steps
 \end{tabu}
 }
@@ -242,7 +242,7 @@ Metadata about the images, shoes, and participants is included in the downloaded
 %----------------------------------------------------------------------------------------
 
 \headerbox{Adidas Seeley}{name=lswa,column=2,span=1,below=url,boxpadding=2mm}{
-\hspace{-.5em}\begin{tabu} to .99\linewidth {X[c]X[c]X[c]X[c]}
+\hspace{-.5em}\begin{tabu} to .99\textwidth {X[c]X[c]X[c]X[c]}
 \includegraphics[height=4.8cm]{007961L_20171031_2_1_1_csafe_bpbryson.pdf} &
 \includegraphics[height=4.8cm]{007961L_20180124_2_1_1_csafe_bryson.pdf} &
 \includegraphics[height=4.8cm]{007961L_20180228_2_1_1_csafe_jekruse.pdf} &
