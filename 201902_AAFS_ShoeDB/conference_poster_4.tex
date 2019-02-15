@@ -173,7 +173,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 \item Worn for a minimum of 10,000 steps per week
 \item Returned every 5 weeks for assessment\\Initial collection + 3 wear assessments
 \end{itemize}
-\vspace{.5em}
+\vspace{1em}
 {\bf Methods}
 \begin{enumerate}
 \item Pressure Scanner {\small(initial visit, barefoot \& with shoes)}
@@ -184,7 +184,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 \item Paper and Powder Prints
 \item Simulated Crime Scene Style Prints
 \end{enumerate}
-\vspace{.5em}
+\vspace{1em}
 {\bf Data Collection Procedures:}
 Documentation at \\{\small\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_Study}}
 }
@@ -224,18 +224,80 @@ Documentation at \\{\small\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_St
 \headercolorbox{Access the Database}{csafered}{name=url,column=1,row=0,span=2}{
 \begin{minipage}[c]{.99\textwidth}
 \centering
-\bf\large\url{https://data.csafe.iastate.edu/LongitudinalShoeStudy/}
+\bf\large\url{https://data.csafe.iastate.edu/DataPortal/}
 \end{minipage}\vspace{-.5em}
 }
 
+%----------------------------------------------------------------------------------------
+%	DB Features
+%----------------------------------------------------------------------------------------
+
+\headercolorbox{Database Features}{csafegreen}{name=features,column=1,below=url}{
+Metadata about the images, shoes, and participants is included in the downloaded zip file.\\
+\vspace{.25em}
+\begin{minipage}{\textwidth}\centering
+\includegraphics[width=.9\textwidth]{QueryFields.png}\vspace{-.5em}
+\captionof{figure}[Query Fields]{6 searchable fields, including design, individual shoe ID, foot, capture method, and number of steps.}
+\end{minipage}\vspace{.52em}
+\begin{minipage}{\textwidth}\centering
+\includegraphics[width=.9\textwidth]{DownloadSelect.png}\vspace{-.5em}
+\captionof{figure}{Download only the images you need.}
+\end{minipage}\vspace{.52em}
+\begin{minipage}{\textwidth}\centering
+\includegraphics[width=.5\textwidth]{SaveAndLoad.png}\vspace{-.5em}
+\captionof{figure}{Export queries for later.}
+\end{minipage}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	Goals
+%----------------------------------------------------------------------------------------
+
+\headercolorbox{Goals}{csafelightblue}{name=goals,column=2,span=1,below=url}{
+The goal of this database is to enable comparisons of wear and individual characteristics, as measured by several different collection methods.
+\vspace{.5em}
+\begin{itemize}\setlength\itemsep{3pt}
+\item Compare data acquisition methods
+\item Examine individual wear patterns
+\item Explore evolution of acquired defects over time
+\item Compare wear/defect frequency between shoe models
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	Build A Query
+%----------------------------------------------------------------------------------------
+
+\headercolorbox{Build A Query}{csafegreen}{name=baq,column=2,below=goals}{
+\vspace{.2em}
+\begin{minipage}{.5\textwidth}\begin{enumerate}\compresslist\small
+\item Add new conditions using the $+$ sign
+\item Select the join operation to use (AND/OR)\\
+{\footnotesize OR joins linked AND queries}
+\item Select the filter variable
+\item Select the desired value
+\item Submit (Initiate Query)
+\item Select images for download (right pane)
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{.475\textwidth}\centering
+\includegraphics[width=.9\textwidth]{QueryBuilder.png}
+\captionof{figure}{Query Build Interface}
+\end{minipage}
+
+\vspace{.2em}
+
+}
 
 %----------------------------------------------------------------------------------------
 %	Longitudinal Shoe Wear - Nike
 %----------------------------------------------------------------------------------------
 
-\headerbox{Nike Winflo - Film Prints}{name=lswn,column=1,below=url}{
+\headerbox{Nike Winflo - Film Prints}{name=lswn,column=1,above=bottom,below=features,below=baq}{
+\vspace{.5em}
 \begin{minipage}{\textwidth}
-\centering
+\centering\scriptsize
 \begin{tabu} to \textwidth {X[c]X[c]X[c]X[c]}
 \includegraphics[height=4.25cm,cframe=csafered]{043758L_20180109_5_1_1_csafe_kruse-basulto-elias-kruse.pdf} &
 \includegraphics[height=4.25cm,cframe=csafered]{043758L_20180131_5_1_1_csafe_boekhoff_kruse_zwart.pdf} &
@@ -247,33 +309,13 @@ Documentation at \\{\small\url{https://github.com/CSAFE-ISU/Longitudinal_Shoe_St
 }
 
 %----------------------------------------------------------------------------------------
-%	DB Features
-%----------------------------------------------------------------------------------------
-
-\headercolorbox{Database Features}{csafegreen}{name=sets,column=1,below=lswn,above=bottom}{
-Metadata about the images, shoes, and participants is included in the downloaded zip file.\\
-\vspace{.25em}
-\begin{minipage}{\textwidth}\centering
-\includegraphics[width=.9\textwidth]{QueryFields.png}\vspace{-.5em}
-\captionof{figure}[Query Fields]{6 searchable fields, including design, individual shoe ID, foot, capture method, and number of steps.}
-\end{minipage}\vspace{.5em}
-\begin{minipage}{\textwidth}\centering
-\includegraphics[width=.9\textwidth]{DownloadSelect.png}\vspace{-.5em}
-\captionof{figure}{Download only the images you need.}
-\end{minipage}\vspace{.5em}
-\begin{minipage}{\textwidth}\centering
-\includegraphics[width=.5\textwidth]{SaveAndLoad.png}\vspace{-.5em}
-\captionof{figure}{Export queries for later.}
-\end{minipage}
-}
-
-%----------------------------------------------------------------------------------------
 %	Longitudinal Shoe Wear - Adidas
 %----------------------------------------------------------------------------------------
 
-\headerbox{Adidas Seeley - 2D Digital Scan}{name=lswa,column=2,span=1,below=url}{
+\headerbox{Adidas Seeley - 2D Digital Scan}{name=lswa,column=2,span=1,above=bottom,below=baq}{
+\vspace{.5em}
 \begin{minipage}{.98\textwidth}
-\centering
+\centering\scriptsize
 \begin{tabu} to \textwidth {X[c]X[c]X[c]X[c]}
 \includegraphics[height=4.25cm]{007961L_20171031_2_1_1_csafe_bpbryson.pdf} &
 \includegraphics[height=4.25cm]{007961L_20180124_2_1_1_csafe_bryson.pdf} &
@@ -285,44 +327,6 @@ Metadata about the images, shoes, and participants is included in the downloaded
 }
 
 
-
-%----------------------------------------------------------------------------------------
-%	Build A Query
-%----------------------------------------------------------------------------------------
-
-\headercolorbox{Build A Query}{csafegreen}{name=baq,column=2,below=lswa}{
-\begin{minipage}{.5\textwidth}\begin{enumerate}\compresslist\small
-\item Add new conditions using the $+$ sign
-\item Select the join operation to use (AND/OR)\\
-{\footnotesize OR joins linked AND queries}
-\item Select the filter variable
-\item Select the desired value
-\item Submit (Initiate Query)
-\item Select images for download (right pane)
-\end{enumerate}
-
-\end{minipage}\hfill
-\begin{minipage}{.475\textwidth}\centering
-\includegraphics[width=.9\textwidth]{QueryBuilder.png}
-\end{minipage}
-
-
-}
-
-%----------------------------------------------------------------------------------------
-%	Other
-%----------------------------------------------------------------------------------------
-
-\headercolorbox{Goals}{csafelightblue}{name=goals,column=2,span=1,below=baq,above=bottom}{
-The goal of this database is to enable comparisons of wear and individual characteristics, as measured by several different collection methods.
-
-\begin{itemize}\setlength\itemsep{3pt}
-\item Compare data acquisition methods
-\item Examine individual wear patterns
-\item Explore evolution of acquired defects over time
-\item Compare wear/defect frequency between shoe models
-\end{itemize}
-}
 \end{poster}
 \csafeboilerplate
 \end{document}
